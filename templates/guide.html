@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Hướng dẫn lấy EAT Token – KiosGamer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+body{
+    background:#05070b;
+}
+.step-card{
+    background:linear-gradient(180deg,#071826,#04101c);
+    border:1px solid rgba(0,255,255,.15);
+}
+</style>
+</head>
+<body class="text-gray-200">
+
+<div class="max-w-4xl mx-auto p-4">
+
+    <!-- HEADER -->
+    <div class="mb-6">
+        <h1 class="text-2xl font-bold text-cyan-400">
+            HƯỚNG DẪN LẤY EAT TOKEN – KiosGamer
+        </h1>
+        <p class="text-gray-400 mt-1">
+            Làm đúng theo từng bước bên dưới (giống ảnh minh họa).
+        </p>
+    </div>
+
+
+    <!-- STEP 1 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 1 – Mở KiosGamer & đăng nhập
+        </h3>
+
+        <p class="text-sm text-gray-300 mb-3">
+            Vào trang ticket.kiosgamer.co.id và chọn nền tảng đăng nhập.
+        </p>
+
+        <img src="/static/guide/IMG_20260203_183723.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+    <!-- STEP 2 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 2 – Nhấn 3 chấm → Nhật ký
+        </h3>
+
+        <p class="text-sm text-gray-300 mb-3">
+            Nhấn dấu 3 chấm góc phải trên Chrome → chọn Nhật ký.
+        </p>
+
+        <img src="/static/guide/IMG_20260203_184036.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+    <!-- STEP 3 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 3 – Giữ vào link Loyalty Shop (dòng thứ 2)
+        </h3>
+
+        <p class="text-sm text-gray-300 mb-3">
+            Giữ vào dòng thứ 2 của <b>Loyalty Shop</b> như hình.
+        </p>
+
+        <img src="/static/guide/IMG_20260203_184324.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+    <!-- STEP 4 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 4 – Ấn 3 Chấm Góc Trên Cùng
+        </h3>
+
+        <img src="/static/guide/IMG_20260203_184526.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+    <!-- STEP 5 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 5 – Chọn Sao Chép Đường Liên Kết
+        </h3>
+
+        <img src="/static/guide/IMG_20260203_184625.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+    <!-- STEP 6 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 6 – Past Link Vào Ô Và Ấn EXTRACT
+        </h3>
+
+        <img src="/static/guide/IMG_20260203_184857.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+    
+    <!-- STEP 7 -->
+    <div class="step-card rounded-xl p-4 mb-6">
+        <h3 class="text-lg font-bold text-cyan-300 mb-2">
+            Bước 7 – Click Copy TOKEN
+        </h3>
+
+        <img src="/static/guide/IMG_20260203_184949.jpg"
+             class="rounded-lg w-full border border-cyan-800">
+    </div>
+
+
+</div>
+
+
+<script>
+function submitToken() {
+
+    const input = tokenInput.value.trim();
+
+    if (input.length === 0) {
+        alert('❌ Vui lòng paste URL hoặc EAT token!');
+        return;
+    }
+
+    // giống logic trong main.py
+    if (/^[a-f0-9]{64,}$/i.test(input)) {
+        window.location.href = `/?eat=${input}`;
+        return;
+    }
+
+    try {
+        const url = new URL(input.startsWith('http') ? input : 'https://' + input);
+        const eat = url.searchParams.get('eat');
+
+        if (eat && /^[a-f0-9]{64,}$/i.test(eat)) {
+            window.location.href = `/?eat=${eat}`;
+            return;
+        }
+
+        alert('❌ Không tìm thấy eat token trong URL!');
+    } catch (e) {
+        alert('❌ URL không hợp lệ!');
+    }
+}
+</script>
+
+</body>
+</html>
